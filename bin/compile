@@ -91,7 +91,7 @@ function compile() {
     tar --strip-components=1 -xj -f /tmp/jemalloc.tar.bz2
 
     # Configure jemalloc to run in /app/vendor/jemalloc
-    ./configure --prefix=/app/vendor/jemalloc
+    ./configure --prefix=/workspace/vendor/jemalloc
 
     # Compile just the shared libraries
     make -j $(nproc --all) build_lib_shared
@@ -129,12 +129,12 @@ cp -r $bundle -T $dest/
 mkdir -p $BUILD_DIR/.profile.d
 
 cat <<'EOF' > $BUILD_DIR/.profile.d/jemalloc.sh
-export PATH="$PATH:/app/vendor/jemalloc/bin"
+export PATH="$PATH:/workspace/vendor/jemalloc/bin"
 
 # Configure LD_PRELOAD when JEMALLOC_ENABLED is set to "true". Setting this can
 # be tricky for people and it occasionally changes with new versions.
 if [ "$JEMALLOC_ENABLED" = 'true' ]; then
-  export LD_PRELOAD="/app/vendor/jemalloc/lib/libjemalloc.so $LD_PRELOAD"
+  export LD_PRELOAD="/workspace/vendor/jemalloc/lib/libjemalloc.so $LD_PRELOAD"
 fi
 EOF
 
