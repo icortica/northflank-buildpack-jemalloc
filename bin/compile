@@ -134,7 +134,7 @@ export PATH="$PATH:/workspace/vendor/jemalloc/bin"
 # Configure LD_PRELOAD when JEMALLOC_ENABLED is set to "true". Setting this can
 # be tricky for people and it occasionally changes with new versions.
 if [ "$JEMALLOC_ENABLED" = 'true' ]; then
-  export LD_PRELOAD="/workspace/vendor/jemalloc/lib/libjemalloc.so $LD_PRELOAD"
+  export LD_PRELOAD="/workspace/vendor/jemalloc/lib/libjemalloc.so"
 fi
 EOF
 
